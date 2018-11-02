@@ -1,10 +1,12 @@
 package framework
 
 import (
+	"crypto/tls"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/joho/godotenv"
 )
@@ -13,6 +15,19 @@ import (
 // prepare the server and router s
 type App struct {
 	Router *Router
+}
+
+type ServerConfig struct {
+	Host string
+	Port string
+
+	ReadHeaderTimeout time.Duration
+	ReadTimeout time.Duration
+	WriteTimeout time.Duration
+	IdleTimeout time.Duration
+
+	UseTLS bool
+	TLSConfig *tls.Config
 }
 
 // New creates a new App and initializes
