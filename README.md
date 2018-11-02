@@ -6,7 +6,7 @@ Golosina is a simple web MVC framework built for Go. Why? Most web developers ar
 
 We wrote simple guides on how to get started with the project and how to use all our our features. Just follow the link to our documentation:
 
-> [Documentation Here](https://github.intern.weebly.net/pages/guac/golosina/)
+> [Documentation Here](https://eaperezc.github.io/golosina/)
 
 ## Features
 

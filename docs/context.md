@@ -14,20 +14,32 @@ type Context struct {
 
 The request is a wrapper for the internal `http.Request` so we have access to all of the functions available for it. Using it we have access to some helper functions to get data from our requests.
 
+### Parameters
+
 #### Query Parameters
+
+This function will give you access to parameters that come from the query. An example of a parameter like this would be somehting like `http://example.com/example?foo=bar`.
 
 ```go
 func (c *ExampleController) Index(ctx *framework.Context) {
-    value := req.QueryParam(key)
+    value := req.QueryParam("foo")
     // do something with the query param value
 }
 ```
 
 #### URL Parameters
 
+URL parameters are part of the route definition. When you have a router that has a path defined like this:
+
+```go
+app.Router.Get("/example/{id}", c.Show)
+```
+
+Then you can access that "id" parameters in your controller actions like this:
+
 ```go
 func (c *ExampleController) Index(ctx *framework.Context) {
-    value = req.URLParam(key)
+    value = req.URLParam("id")
     // do something with the URL param value
 }
 ```
@@ -58,6 +70,32 @@ func (c *ExampleController) Index(ctx *framework.Context) {
     // do something with the Form param value
 }
 ```
+
+### Validations
+
+To simplify parameter validations we have a function on the Request where you can define the validation rules for your parameters. Here's an example of how to use it:
+
+```go
+func (c *ApplicationController) Update(ctx *framework.Context) {
+
+	params, valid := ctx.Request.Validate(map[string]string{
+		"id":   "required",
+		"name": "required",
+	})
+
+	if !valid {
+		ctx.Response.String("Validation failed")
+		return
+    }
+
+    // do something with params["id"] or params["name"]
+}
+```
+
+#### Available validation rules
+
+* required
+
 
 ## Response
 
