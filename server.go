@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/eaperezc/golosina/controllers"
 	"github.com/eaperezc/golosina/framework"
+	"github.com/eaperezc/golosina/middleware"
 )
 
 func main() {
@@ -15,6 +16,8 @@ func main() {
 		c := &controllers.ApplicationController{}
 		r.Get("/applications", c.Index)
 	})
+
+	app.Router.Use(middleware.LogRequests())
 
 	app.Start()
 }

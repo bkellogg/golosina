@@ -14,7 +14,8 @@ import (
 // App is a struct that we will use to
 // prepare the server and router s
 type App struct {
-	Router *Router
+	Router  *Router
+	started bool
 }
 
 type ServerConfig struct {
@@ -22,11 +23,11 @@ type ServerConfig struct {
 	Port string
 
 	ReadHeaderTimeout time.Duration
-	ReadTimeout time.Duration
-	WriteTimeout time.Duration
-	IdleTimeout time.Duration
+	ReadTimeout       time.Duration
+	WriteTimeout      time.Duration
+	IdleTimeout       time.Duration
 
-	UseTLS bool
+	UseTLS    bool
 	TLSConfig *tls.Config
 }
 
@@ -35,7 +36,9 @@ type ServerConfig struct {
 func New() *App {
 	loadEnv()
 	r := NewRouter()
-	return &App{r}
+	return &App{
+		Router: r,
+	}
 }
 
 // Start will listen to the host and port that we

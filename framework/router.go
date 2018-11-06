@@ -9,7 +9,8 @@ import (
 // Router is a wrapper for the gorilla/mux router
 type Router struct {
 	*mux.Router
-	DB *Database
+	middlewares []Middleware
+	DB          *Database
 }
 
 // Context has all the important
@@ -24,8 +25,17 @@ type Context struct {
 func NewRouter() *Router {
 	return &Router{
 		&mux.Router{},
-		NewDatabase(),
+		make([]Middleware, 0),
+		nil,
 	}
+}
+
+func (r *Router) Use(mw Middleware) {
+	r.middlewares = append(r.middlewares, mw)
+}
+
+func (r *Router) applyMiddlewares() {
+
 }
 
 // Get will add a route for a GET request method
@@ -61,7 +71,7 @@ func (r *Router) Resource(path string, c IResourceController) {
 // Group serves as a prefixer for a group or routes
 func (r *Router) Group(prefix string, closure func(r *Router)) {
 	prefixed := r.PathPrefix(prefix).Subrouter()
-	router := &Router{prefixed, r.DB}
+	router := &Router{prefixed, make([]Middleware, 0), r.DB}
 	closure(router)
 }
 
