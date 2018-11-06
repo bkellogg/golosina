@@ -3,10 +3,15 @@ package controllers
 import (
 	"github.com/eaperezc/golosina/framework"
 	"github.com/eaperezc/golosina/models"
+	"github.com/eaperezc/golosina/views"
 )
 
+// ApplicationController definition for the controller
 type ApplicationController struct{}
 
+// ApplicationResponse has the structure we will respond from
+// this controller. Message will be used to send error
+// string when something bad happens
 type ApplicationResponse struct {
 	Success      bool                  `json:"success"`
 	Application  *models.Application   `json:"application,omitempty"`
@@ -14,6 +19,8 @@ type ApplicationResponse struct {
 	Message      string                `json:"message,omitempty"`
 }
 
+// Index will return a list of all the resource
+// Route: GET /applications
 func (c *ApplicationController) Index(ctx *framework.Context) {
 	var applications []*models.Application
 	ctx.Database.Debug().Find(&applications)
@@ -24,6 +31,8 @@ func (c *ApplicationController) Index(ctx *framework.Context) {
 	})
 }
 
+// Show the resource by id
+// Route: GET /applications/{id}
 func (c *ApplicationController) Show(ctx *framework.Context) {
 
 	params, valid := ctx.Request.Validate(map[string]string{
@@ -45,6 +54,8 @@ func (c *ApplicationController) Show(ctx *framework.Context) {
 	ctx.Response.JSON(&ApplicationResponse{Success: true, Application: &application})
 }
 
+// Create will add a new resouce
+// Route: POST /applications
 func (c *ApplicationController) Create(ctx *framework.Context) {
 
 	params, valid := ctx.Request.Validate(map[string]string{
@@ -64,6 +75,8 @@ func (c *ApplicationController) Create(ctx *framework.Context) {
 	ctx.Response.JSON(&ApplicationResponse{Success: true, Application: &application})
 }
 
+// Update will change the info of the resource
+// Route: PUT /applications/{id}
 func (c *ApplicationController) Update(ctx *framework.Context) {
 
 	params, valid := ctx.Request.Validate(map[string]string{
@@ -88,6 +101,8 @@ func (c *ApplicationController) Update(ctx *framework.Context) {
 	ctx.Response.JSON(&ApplicationResponse{Success: true, Application: &application})
 }
 
+// Delete will remove the resouce
+// Route: DELETE /applications/{id}
 func (c *ApplicationController) Delete(ctx *framework.Context) {
 	params, valid := ctx.Request.Validate(map[string]string{
 		"id": "required",
@@ -107,7 +122,14 @@ func (c *ApplicationController) Delete(ctx *framework.Context) {
 	}
 
 	ctx.Database.Delete(&application)
-
 	ctx.Response.JSON(&ApplicationResponse{Success: true})
+}
 
+// Test will render a home view
+func (c *ApplicationController) Test(ctx *framework.Context) {
+
+	v := &views.HomeView{}
+	v.Init(ctx)
+
+	ctx.Response.View(v)
 }

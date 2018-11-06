@@ -1,6 +1,8 @@
 * [Home](/)
 * [Getting Started](getting-started.md)
+* [Configuration](configuration.md)
 * [Routing](routing.md)
 * [Controllers](controllers.md)
 * [Models](models.md)
+* [Views](views.md)
 * [Context](context.md)

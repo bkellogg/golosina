@@ -26,3 +26,16 @@ func (res *Response) JSON(el interface{}) {
 	res.Header().Set("Content-Type", "application/json")
 	res.Write(js)
 }
+
+// View will use a template to render a view into the
+// Response, it requires the layout and the template
+func (res *Response) View(view IView) {
+
+	templates, err := view.Render()
+	if err != nil {
+		http.Error(res, "500 Internal Server Error", 500)
+		return
+	}
+
+	templates.ExecuteTemplate(res, view.GetLayout(), view.GetData())
+}

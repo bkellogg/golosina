@@ -101,7 +101,7 @@ func (c *ApplicationController) Update(ctx *framework.Context) {
 
 A Response is a wrapper for the internal `http.ResponseWriter` so we have access to all of the functions available for it. Using it we have access to some helper functions to send data back to the client.
 
-#### Print Strings
+### Strings
 
 ```go
 func (c *ExampleController) Index(ctx *framework.Context) {
@@ -109,7 +109,7 @@ func (c *ExampleController) Index(ctx *framework.Context) {
 }
 ```
 
-#### JSON
+### JSON
 
 ```go
 type ApplicationResponse struct {

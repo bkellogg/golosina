@@ -19,6 +19,12 @@ type Database struct {
 // the connected database pointer for queries
 func NewDatabase() *Database {
 
+	// Sometimes we don't need/have a database so
+	// we will only use it whenever we need to
+	if os.Getenv("DB_ENABLED") != "true" {
+		return nil
+	}
+
 	dbConnString := fmt.Sprintf(
 		"%s:%s@(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		os.Getenv("DB_USER"),

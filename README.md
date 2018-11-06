@@ -8,11 +8,11 @@ We wrote simple guides on how to get started with the project and how to use all
 
 > [Documentation Here](https://eaperezc.github.io/golosina/)
 
-## Features
+## Packages
 
-* [Routing](routing.md)
-* [Controllers](controllers.md)
-* [Models](models.md)
+* Routing - [Gorilla](https://github.com/gorilla/mux)
+* Models - [GORM](http://gorm.io/)
+* Config - [GoDotEnv](https://github.com/joho/godotenv)
 
 > We are working on adding more features but feel free to open a PR if you think you have some code that can help the community.
 

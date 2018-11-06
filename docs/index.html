@@ -7,6 +7,52 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/dark.css">
+
+  <style>
+    span.token.function {
+      color: #e2e277;
+    }
+    .markdown-section {
+      margin: 0 auto;
+      max-width: inherit;
+      padding: 0px 60px 40px 50px;
+    }
+    .markdown-section pre>code {
+      color: #89bacc;
+    }
+    .sidebar {
+      padding: 65px 0 0;
+    }
+    .sidebar .sidebar-nav {
+      padding-left: 60px;
+    }
+    .sidebar>h1 {
+      padding-left: 50px;
+      text-align: left
+    }
+    .sidebar ul, .sidebar ul li {
+      list-style: hiragana;
+    }
+    .sidebar-toggle {
+      width: 15px;
+      top: 15px;
+      left: 12px;
+      bottom: inherit
+    }
+    @media screen and (max-width: 768px) {
+      .sidebar-toggle {
+        padding: 18px 10px;
+      }
+      body.close .sidebar-toggle {
+        padding: 18px 10px;
+        width: 15px;
+      }
+      .markdown-section {
+        padding: 0px 30px 40px 50px;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <div id="app"></div>

@@ -1,6 +1,11 @@
 # Routing
 
-Our routing system works as a wrapper for the [Gorilla Mux Router](https://github.com/gorilla/mux).
+Our routing system works as a wrapper for the [Gorilla Mux Router](https://github.com/gorilla/mux). Routes live under the `routes` folder and here we have a couple of files you can use to define your routes.
+
+* api.go: has the definition of our API routes
+* web.go: has the definition of our web pages routes
+
+?> Of course you can also define routes directly on the `main()` func but we recommend that you follow the files format to facilitate debugging and maintenance.
 
 ## Method Routes
 

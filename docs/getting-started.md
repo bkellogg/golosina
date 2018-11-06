@@ -2,7 +2,7 @@
 
 Here I'll try to explain all the elements that will need to be configured to start working with the framework.
 
-## Instalation 
+## Installation
 
 The most important part of the installation of the framework is to have all the `GOPATH` and `GOROOT` defined. Usually I don't think too much on what I have to do here, I just follow this awesome guide.
 
@@ -33,8 +33,17 @@ The project folders are a little bit different from the one we are used to but n
     * A controller per resource (usually) or any independent controllers you will need in your app will live here. The naming convension we defined for these files is `EntityController.go` (e.g UserController.go)
 * models
     * All application models and db logic. Those models are basically gorm models and they are named with upper camelCasing like `User.go` or `Post.go`
+* routes
+    * api.go: has the definition of our API routes
+    * web.go: has the definition of our web pages routes
+* views
+    * The definition of our view code will live here. This code will contain all the parameters for our views and also the structs that we will send as data to the templates
+        * templates
+            * Here we will store all of our view templates
 * framework
     * Internal framework package with wrappers to other libraries to make your life easy. Most of the cases you don't need to worry what happens here but maybe you'll want to customize the internal structure to fit your needs
+* docs
+    * The folder that contains this documentation. Built with [Docsify](https://docsify.js.org/#/quickstart)
 * server.go
     * This is the `main` file for the project. We will run `go run server.go` to start our app
 
